@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   // form login
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
 
  bool _obscurePassword = true; // status toggle
 
@@ -29,11 +31,15 @@ class _LoginPageState extends State<LoginPage> {
                 Image.asset('assets/image/logo.png'),
                 _buildHeader(),
                 const SizedBox(height: 40),
+                _buildNameField(),
+                const SizedBox(height: 20),
                 _buildEmailField(),
                 const SizedBox(height: 20),
                 _buildPasswordField(),
                 const SizedBox(height: 30),
-                _buildLoginButton(context),
+                _buildConfirmPasswordField(),
+                const SizedBox(height: 30),
+                _buildRegisterButton(context),
                 const SizedBox(height: 20),
                 _buildSignUpLink(context),
               ],
@@ -53,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         const SizedBox(height: 20),
         const Text(
-          'Welcome Back!',
+          'Welcome New User',
           style: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,
@@ -62,13 +68,30 @@ class _LoginPageState extends State<LoginPage> {
         ),
         const SizedBox(height: 10),
         const Text(
-          'Login to continue',
+          'Register to continue',
           style: TextStyle(
             fontSize: 16,
             color: Color(0xFF4C53A5),
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildNameField() {
+    return TextFormField(
+      controller: _nameController,
+      decoration: InputDecoration(
+        labelText: 'User Name',
+        prefixIcon: const Icon(Icons.near_me, color: Color(0xFF4C53A5)),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Nama tidak boleh kosong';
+        }
+        return null;
+      },
     );
   }
 
@@ -124,7 +147,28 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildLoginButton(BuildContext context) {
+  Widget _buildConfirmPasswordField() {
+    return TextFormField(
+      controller: _confirmPasswordController,
+      obscureText: _obscurePassword,
+      decoration: InputDecoration(
+        labelText: 'Confirm Password',
+        prefixIcon: const Icon(Icons.lock_outline, color: Color(0xFF4C53A5)),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Konfirmasi password tidak boleh kosong';
+        }
+        if (value != _passwordController.text) {
+          return 'Password tidak sama';
+        }
+        return null;
+      },
+    );
+  }
+
+  Widget _buildRegisterButton(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
@@ -139,25 +183,25 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
       child: const Text(
-        'Login',
+        'Register',
         style: TextStyle(color: Colors.white, fontSize: 18),
       ),
     );
   }
 
- Widget _buildSignUpLink(BuildContext context) {
+  Widget _buildSignUpLink(BuildContext context) {
   return InkWell(
     onTap: () {
-      Navigator.pushNamed(context, 'registerPage');
+      Navigator.pushNamed(context, 'loginPage');
     },
     child: const Text(
-      'Dont have an account? Register',
+      'Already have an account? Login',
       style: TextStyle(
-      color: Color(0xFF4C53A5),
-      decoration: TextDecoration.underline,
-
+        color: Color(0xFF4C53A5),
+        decoration: TextDecoration.underline,
       ),
     ),
   );
 }
+
 }
