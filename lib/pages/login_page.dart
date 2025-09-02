@@ -13,7 +13,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
- bool _obscurePassword = true; // status toggle
+  bool _obscurePassword = true; // status toggle
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
           style: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF4C53A5),
+            color: Color(0xFF42B549),
           ),
         ),
         const SizedBox(height: 10),
@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
           'Login to continue',
           style: TextStyle(
             fontSize: 16,
-            color: Color(0xFF4C53A5),
+            color: Color(0xFF42B549),
           ),
         ),
       ],
@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
       controller: _emailController,
       decoration: InputDecoration(
         labelText: 'Email',
-        prefixIcon: const Icon(Icons.email, color: Color(0xFF4C53A5)),
+        prefixIcon: const Icon(Icons.email, color: Color(0xFF42B549)),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
       validator: (value) {
@@ -98,16 +98,16 @@ class _LoginPageState extends State<LoginPage> {
       obscureText: _obscurePassword,
       decoration: InputDecoration(
         labelText: 'Password',
-        prefixIcon: const Icon(Icons.lock, color: Color(0xFF4C53A5)),
+        prefixIcon: const Icon(Icons.lock, color: Color(0xFF42B549)),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         suffixIcon: IconButton(
           icon: Icon(
-             _obscurePassword ? Icons.visibility : Icons.visibility_off,
-            color: const Color(0xFF4C53A5),
+            _obscurePassword ? Icons.visibility : Icons.visibility_off,
+            color: const Color(0xFF42B549),
           ),
           onPressed: () {
             setState(() {
-            _obscurePassword = !_obscurePassword; // tombol show/hide
+              _obscurePassword = !_obscurePassword; // tombol show/hide
             });
           },
         )
@@ -132,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
         }
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFF4C53A5),
+        backgroundColor: const Color(0xFF42B549),
         padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
@@ -145,19 +145,18 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
- Widget _buildSignUpLink(BuildContext context) {
-  return InkWell(
-    onTap: () {
-      Navigator.pushNamed(context, 'registerPage');
-    },
-    child: const Text(
-      'Dont have an account? Register',
-      style: TextStyle(
-      color: Color(0xFF4C53A5),
-      decoration: TextDecoration.underline,
-
+  Widget _buildSignUpLink(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, 'registerPage');
+      },
+      child: const Text(
+        'Dont have an account? Register',
+        style: TextStyle(
+          color: Color(0xFF42B549),
+          decoration: TextDecoration.underline,
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 }

@@ -48,7 +48,7 @@ class CartPage extends StatelessWidget {
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12),
-                                borderSide: const BorderSide(color: Color(0xFF6366F1), width: 1.5),
+                                borderSide: const BorderSide(color: Color(0xFF42B549), width: 1.5),
                               ),
                               contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                               fillColor: Colors.white,
@@ -57,29 +57,29 @@ class CartPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 10),
-                            ElevatedButton(
-                              onPressed: () {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: const Text(
-                                      "Coupon applied!",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    backgroundColor: const Color(0xFF10B981), // hijau biar konsisten
-                                    behavior: SnackBarBehavior.floating, // biar melayang
-                                    margin: const EdgeInsets.all(16), // jarak ke tepi layar
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    duration: const Duration(seconds: 1),
+                        ElevatedButton(
+                          onPressed: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: const Text(
+                                  "Coupon applied!",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                );
-                              },
+                                ),
+                                backgroundColor: const Color(0xFF42B549), // hijau biar konsisten
+                                behavior: SnackBarBehavior.floating, // biar melayang
+                                margin: const EdgeInsets.all(16), // jarak ke tepi layar
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                duration: const Duration(seconds: 1),
+                              ),
+                            );
+                          },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF6366F1),
+                            backgroundColor: const Color(0xFF42B549),
                             foregroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
@@ -101,7 +101,7 @@ class CartPage extends StatelessWidget {
             ),
           ),
         ],
-      ), 
+      ),
 
       // Bottom Navbar khusus cart
       bottomNavigationBar: const cartBottomNavBar(),

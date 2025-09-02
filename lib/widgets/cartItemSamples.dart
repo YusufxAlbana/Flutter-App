@@ -52,7 +52,7 @@ class _CartItemSamplesState extends State<cartItemSamples> {
                 Radio(
                   value: '',
                   groupValue: '',
-                  activeColor: const Color(0xFF6366F1),
+                  activeColor: const Color(0xFF42B549), // ✅ ganti warna
                   onChanged: (index) {},
                 ),
 
@@ -181,7 +181,7 @@ class _CartItemSamplesState extends State<cartItemSamples> {
           ),
         ],
       ),
-      child: Icon(icon, size: 18, color: const Color(0xFF6366F1)),
+      child: Icon(icon, size: 18, color: const Color(0xFF42B549)), // ✅ ganti warna
     );
   }
 }

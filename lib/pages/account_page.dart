@@ -39,7 +39,7 @@ class AccountPage extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFF6366F1), Color(0xFF4F46E5)],
+          colors: [Color(0xFF42B549),Color.fromARGB(255, 119, 252, 127)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -111,7 +111,7 @@ class AccountPage extends StatelessWidget {
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: ListTile(
-          leading: Icon(icon, color: const Color(0xFF6366F1), size: 28),
+          leading: Icon(icon, color: const Color(0xFF42B549), size: 28),
           title: Text(
             title,
             style: const TextStyle(
@@ -198,7 +198,7 @@ class AccountPage extends StatelessWidget {
           ),
           content: const Text(
             'Are you sure want to logout?',
-            style: TextStyle(color: Color(0xFF6B7280)),
+            style: TextStyle(color: Color(0xFF42B549)),
           ),
           actions: [
             TextButton(
@@ -219,7 +219,7 @@ class AccountPage extends StatelessWidget {
                       "Logout Successful",
                       style: TextStyle(color: Colors.white),
                     ),
-                    backgroundColor: const Color(0xFF10B981),
+                    backgroundColor: const Color(0xFF42B549),
                     behavior: SnackBarBehavior.floating,
                     duration: const Duration(seconds: 2),
                     elevation: 6,
@@ -231,7 +231,7 @@ class AccountPage extends StatelessWidget {
                 Navigator.pushReplacementNamed(context, 'loginPage');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF6366F1),
+                backgroundColor: const Color(0xFF42B549),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -326,7 +326,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                             "mengganti password berhasil",
                             style: TextStyle(color: Colors.white),
                           ),
-                          backgroundColor: const Color(0xFF10B981),
+                          backgroundColor: const Color(0xFF42B549),
                           behavior: SnackBarBehavior.floating,
                           duration: const Duration(seconds: 2),
                           elevation: 6,
@@ -349,12 +349,12 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF6366F1),
+                    color: const Color(0xFF42B549),
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       if (!_pressed)
                         BoxShadow(
-                          color: const Color(0xFF6366F1).withOpacity(0.3),
+                          color: const Color(0xFF42B549).withOpacity(0.3),
                           blurRadius: 8,
                           offset: const Offset(0, 4),
                         ),

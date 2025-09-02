@@ -28,7 +28,7 @@ class cartAppBar extends StatelessWidget {
             child: const Icon(
               Icons.arrow_back,
               size: 30,
-              color: Color(0xFF6366F1),
+              color: Color(0xFF42B549), // ✅ ganti warna
             ),
           ),
 
@@ -37,7 +37,7 @@ class cartAppBar extends StatelessWidget {
             padding: EdgeInsets.only(left: 20),
             child: Row(
               children: [
-                Icon(Icons.shopping_cart, color: Color(0xFF6366F1)), // 🛒 ikon
+                Icon(Icons.shopping_cart, color: Color(0xFF42B549)), // 🛒 ikon ✅ ganti warna
                 SizedBox(width: 8),
                 Text(
                   'Cart',
@@ -58,7 +58,7 @@ class cartAppBar extends StatelessWidget {
             icon: const Icon(
               Icons.more_vert,
               size: 30,
-              color: Color(0xFF6366F1),
+              color: Color(0xFF42B549), // ✅ ganti warna
             ),
             onSelected: (value) {
               if (value == 'refresh') {

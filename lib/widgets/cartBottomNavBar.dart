@@ -84,12 +84,12 @@ class _cartBottomNavBarState extends State<cartBottomNavBar> {
                 height: _pressed ? 45 : 50,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF6366F1),
+                  color: const Color(0xFF42B549),
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     if (!_pressed)
                       BoxShadow(
-                        color: const Color(0xFF6366F1).withOpacity(0.3),
+                        color: const Color(0xFF42B549).withOpacity(0.3),
                         blurRadius: 8,
                         offset: const Offset(0, 4),
                       ),
