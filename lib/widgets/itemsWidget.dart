@@ -1,13 +1,29 @@
+import 'package:e_commerse_flutter_app/pages/detail_product.dart';
 import 'package:flutter/material.dart';
+import 'package:e_commerse_flutter_app/pages/detail_product.dart'; // pastikan path benar
 
 class ItemsWidget extends StatelessWidget {
   ItemsWidget({super.key});
 
   final List<String> myProductName = [
     'Baju Outdoor 1 set',
-    'Selai coklat ',
-    'skintific loution',
-    'TWS Bluetooth ',
+    'Selai coklat',
+    'Skintific Lotion',
+    'TWS Bluetooth',
+  ];
+
+  final List<String> myProductImages = [
+    'images/items/1.jpeg',
+    'images/items/2.jpeg',
+    'images/items/3.jpeg',
+    'images/items/4.jpeg',
+  ];
+
+  final List<double> myProductPrice = [
+    250000, // contoh harga produk 1
+    55000,  // contoh harga produk 2
+    120000, // contoh harga produk 3
+    180000, // contoh harga produk 4
   ];
 
   @override
@@ -25,7 +41,7 @@ class ItemsWidget extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
-              boxShadow: [ // 🔹 shadow halus
+              boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.1),
                   spreadRadius: 2,
@@ -35,7 +51,7 @@ class ItemsWidget extends StatelessWidget {
               ],
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start, // rata kiri
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // 🔹 Bagian atas: diskon + icon favorite
                 Row(
@@ -62,36 +78,44 @@ class ItemsWidget extends StatelessWidget {
 
                 const SizedBox(height: 10),
 
-               // 🔹 Gambar produk (klikable)
+                // 🔹 Gambar produk (klikable)
                 InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, "itemsPage");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => detailProductPage(
+                          name: myProductName[i],
+                          image: myProductImages[i],
+                          price: myProductPrice[i],
+                        ),
+                      ),
+                    );
                   },
                   child: Container(
                     margin: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20), // sudut membulat
+                      borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.2),
-                          spreadRadius: -2,   // negatif supaya cekung
+                          spreadRadius: -2,
                           blurRadius: 10,
                           offset: const Offset(0, 5),
                         ),
                       ],
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20), // sama dengan di atas
+                      borderRadius: BorderRadius.circular(20),
                       child: Image.asset(
-                        'images/items/${i + 1}.jpeg',
+                        myProductImages[i],
                         height: 350,
                         width: double.infinity,
-                        fit: BoxFit.cover, // biar pas
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
                 ),
-
 
                 // 🔹 Nama produk
                 Container(
@@ -114,32 +138,34 @@ class ItemsWidget extends StatelessWidget {
                     'Write description Product',
                     style: TextStyle(
                       fontSize: 14,
-                      fontStyle: FontStyle.italic, // italic
-                      color: Colors.grey, // warna sekunder
+                      fontStyle: FontStyle.italic,
+                      color: Colors.grey,
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
+
+                // 🔹 Harga + icon cart
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '\$65',
-                        style: TextStyle(
+                        "Rp ${myProductPrice[i].toStringAsFixed(0)}",
+                        style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF42B549),
                         ),
                       ),
-                      Icon(
+                      const Icon(
                         Icons.shopping_cart,
                         size: 20,
                         color: Color(0xFF42B549),
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),

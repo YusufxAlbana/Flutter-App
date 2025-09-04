@@ -2,47 +2,72 @@ import 'package:flutter/material.dart';
 
 class chatScreen extends StatefulWidget {
   final String contactName;
-  const chatScreen({required this.contactName, super.key});
+  final String avatarAsset;
+  final List<Map<String, dynamic>> messages;
+
+  chatScreen({
+    Key? key,
+    required this.contactName,
+    required this.avatarAsset,
+    required this.messages,
+  }) : super(key: key);
 
   @override
-  _chatScreenState createState() => _chatScreenState();
+  _ChatScreenState createState() => _ChatScreenState();
 }
 
-class _chatScreenState extends State<chatScreen> {
-  // ✅ Data pesan
-  List<Map<String, dynamic>> messages = [
-    {'text': 'Hallo', 'isMe': true, 'time': '12:55'},
-    {'text': 'Ada yang bisa dibantu?', 'isMe': false, 'time': '13:00'},
-  ];
-
-  // ✅ Controller input text & scroll
+class _ChatScreenState extends State<chatScreen> {
+  late List<Map<String, dynamic>> messages;
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
 
-  // ✅ Fungsi kirim pesan
+  @override
+  void initState() {
+    super.initState();
+    // clone supaya bisa ditambah
+    messages = List.from(widget.messages);
+    // auto scroll ke bawah saat pertama kali buka
+    WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
+  }
+
   void _sendMessage() {
-    if (_controller.text.isNotEmpty) {
+    if (_controller.text.trim().isEmpty) return;
+
+    setState(() {
+      messages.add({
+        'text': _controller.text.trim(),
+        'isMe': true,
+        'time': _formatCurrentTime(),
+      });
+    });
+    _controller.clear();
+    _scrollToBottom();
+
+    // 🔹 Dummy balasan otomatis setelah 1 detik
+    Future.delayed(const Duration(seconds: 1), () {
       setState(() {
         messages.add({
-          'text': _controller.text,
-          'isMe': true,
+          'text': "Pesan anda sudah kami terima 👍",
+          'isMe': false,
           'time': _formatCurrentTime(),
         });
       });
-      _controller.clear();
+      _scrollToBottom();
+    });
+  }
 
-      // Auto scroll ke pesan terbaru
-      WidgetsBinding.instance.addPostFrameCallback((_) {
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
         _scrollController.animateTo(
-          0.0,
+          _scrollController.position.maxScrollExtent,
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeOut,
         );
-      });
-    }
+      }
+    });
   }
 
-  // ✅ Format waktu
   String _formatCurrentTime() {
     final now = DateTime.now();
     return "${now.hour}:${now.minute.toString().padLeft(2, '0')}";
@@ -55,9 +80,7 @@ class _chatScreenState extends State<chatScreen> {
         backgroundColor: const Color(0xFF42B549),
         title: Row(
           children: [
-            const CircleAvatar(
-              backgroundImage: AssetImage("images/7.jpg"), // ganti sesuai avatar kontak
-            ),
+            CircleAvatar(backgroundImage: AssetImage(widget.avatarAsset)),
             const SizedBox(width: 10),
             Text(widget.contactName),
           ],
@@ -65,23 +88,20 @@ class _chatScreenState extends State<chatScreen> {
       ),
       body: Column(
         children: [
-          // 🔹 List Pesan
           Expanded(
             child: ListView.builder(
               controller: _scrollController,
-              reverse: true, // pesan baru di bawah
               itemCount: messages.length,
               itemBuilder: (context, index) {
-                final message = messages[messages.length - 1 - index];
-                final isMe = message['isMe'];
+                final msg = messages[index];
+                final isMe = msg['isMe'] as bool;
 
                 return Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
                   child: Align(
-                    alignment: isMe
-                        ? Alignment.centerRight
-                        : Alignment.centerLeft,
+                    alignment:
+                        isMe ? Alignment.centerRight : Alignment.centerLeft,
                     child: Column(
                       crossAxisAlignment: isMe
                           ? CrossAxisAlignment.end
@@ -90,7 +110,8 @@ class _chatScreenState extends State<chatScreen> {
                         Container(
                           padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
-                            color: isMe ? Colors.green[100] : Colors.grey[300],
+                            color:
+                                isMe ? Colors.green[100] : Colors.grey[300],
                             borderRadius: BorderRadius.only(
                               topLeft: const Radius.circular(16),
                               topRight: const Radius.circular(16),
@@ -103,20 +124,15 @@ class _chatScreenState extends State<chatScreen> {
                             ),
                           ),
                           child: Text(
-                            message['text']!,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                            ),
+                            msg['text'],
+                            style: const TextStyle(fontSize: 16),
                           ),
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          message['time']!,
+                          msg['time'],
                           style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey[600],
-                          ),
+                              fontSize: 12, color: Colors.grey[600]),
                         ),
                       ],
                     ),
@@ -125,41 +141,28 @@ class _chatScreenState extends State<chatScreen> {
               },
             ),
           ),
-
-          // 🔹 Input Pesan
           SafeArea(
             child: Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
               child: Row(
                 children: [
-                  // Tombol emoji
-                  IconButton(
-                    icon: const Icon(Icons.emoji_emotions_outlined),
-                    color: Colors.grey[600],
-                    onPressed: () {},
-                  ),
-                  // Input field
                   Expanded(
                     child: TextField(
                       controller: _controller,
                       decoration: InputDecoration(
-                        hintText: 'Type a message...',
+                        hintText: 'Ketik pesan...',
                         filled: true,
                         fillColor: Colors.grey[200],
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
                           borderSide: BorderSide.none,
                         ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 16,
-                        ),
                       ),
+                      onSubmitted: (_) => _sendMessage(),
                     ),
                   ),
                   const SizedBox(width: 6),
-                  // Tombol Kirim
                   CircleAvatar(
                     radius: 24,
                     backgroundColor: const Color(0xFF42B549),

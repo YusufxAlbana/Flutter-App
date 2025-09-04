@@ -30,8 +30,18 @@ class MyApp extends StatelessWidget {
         'cartPage': (context) => const CartPage(),
         'homePage': (context) => const homePage(),
         'listPage': (context) => listPage(),
-        'chatDetail': (context) => chatScreen(contactName: 'Nike Official'),
+
+                    'chatDetail': (context) {
+        final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+        return chatScreen(
+          contactName: args['name'],
+          avatarAsset: args['avatar'],
+          messages: (args['messages'] != null)
+              ? List<Map<String, dynamic>>.from(args['messages'])
+              : [], // kalau null jadi list kosong
+        );
       },
+     },
     );
   }
 }

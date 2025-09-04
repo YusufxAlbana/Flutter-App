@@ -64,6 +64,8 @@ flutter:
   assets:
     - assets/images/logo.png
     - assets/images/account.jpeg
+    - assets/images/7.png
+    - assets/images/5.webp
     - assets/images/carts/
     - assets/images/items/
     - assets/images/categories/

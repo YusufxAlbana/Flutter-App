@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Halaman ListPage
 class listPage extends StatefulWidget {
   @override
   _listPageState createState() => _listPageState();
@@ -8,41 +7,63 @@ class listPage extends StatefulWidget {
 
 class _listPageState extends State<listPage> {
   // ✅ Data chat dummy
-  final List<Map<String, dynamic>> chats = [
-    {
-      'name': 'Nike Official',
-      'message': 'Segera Memesan Sebelum Kehabisan.',
-      'time': '12:30',
-      'avatar': 'images/7.jpg',
-      'isUnread': true, // 🔹 BELUM dibaca
-    },
-    {
-      'name': 'Expander',
-      'message': 'Hallo, Selamat Datang Di Nike Official.',
-      'time': '12:05',
-      'avatar': 'images/5.jpg',
-      'isUnread': false, // 🔹 SUDAH dibaca
-    },
-  ];
+final List<Map<String, dynamic>> chats = [
+  {
+    'name': 'Eiger Official',
+    'message': 'Segera Memesan Sebelum Kehabisan.',
+    'time': '12:30',
+    'avatar': 'images/7.png',
+    'isUnread': true,
+    'messages': [
+      {
+        'text': 'Segera Memesan Sebelum Kehabisan.',
+        'isMe': false,
+        'time': '12:30',
+      },
+      {
+        'text': 'Baik, saya cek dulu stoknya.',
+        'isMe': true,
+        'time': '12:32',
+      },
+    ],
+  },
+  {
+    'name': 'Penjual Jesus Lokal',
+    'message': 'jadi gimana ini mas pesanannya ?',
+    'time': '12:05',
+    'avatar': 'images/5.webp',
+    'isUnread': false,
+    'messages': [
+      {
+        'text': 'Halo mas, jadi gimana pesannya?',
+        'isMe': false,
+        'time': '12:05',
+      },
+      {
+        'text': 'Oh iya, saya pesen 2 ya.',
+        'isMe': true,
+        'time': '12:07',
+      },
+    ],
+  },
+];
 
-  bool showUnreadOnly = false; // 🔹 Filter state
+  bool showUnreadOnly = false;
 
   @override
   Widget build(BuildContext context) {
-    // 🔹 Filter list berdasarkan showUnreadOnly
     final filteredChats = showUnreadOnly
         ? chats.where((chat) => chat['isUnread'] == true).toList()
         : chats;
 
     return Scaffold(
-      // ✅ AppBar
       appBar: AppBar(
         title: const Text(
           'List Chat',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 25,
-            color: Color(0xFF42B549), // Tokopedia green
+            color: Color(0xFF42B549),
           ),
         ),
         backgroundColor: Colors.white,
@@ -54,22 +75,16 @@ class _listPageState extends State<listPage> {
           ),
         ],
       ),
-
-      // ✅ Body
       body: Column(
         children: [
-          // 🔹 Filter button (semua / belum dibaca)
+          // 🔹 Filter button
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 19.0, vertical: 8.0),
             color: Colors.white,
             child: Row(
               children: [
                 TextButton(
-                  onPressed: () {
-                    setState(() {
-                      showUnreadOnly = false;
-                    });
-                  },
+                  onPressed: () => setState(() => showUnreadOnly = false),
                   child: Text(
                     'Semua',
                     style: TextStyle(
@@ -83,11 +98,7 @@ class _listPageState extends State<listPage> {
                 ),
                 const SizedBox(width: 10),
                 TextButton(
-                  onPressed: () {
-                    setState(() {
-                      showUnreadOnly = true;
-                    });
-                  },
+                  onPressed: () => setState(() => showUnreadOnly = true),
                   child: Text(
                     'Belum Dibaca',
                     style: TextStyle(
@@ -129,7 +140,6 @@ class _listPageState extends State<listPage> {
                           fontSize: 12,
                         ),
                       ),
-                      // ✅ Indikator pesan belum dibaca
                       if (chat['isUnread'])
                         Container(
                           margin: const EdgeInsets.only(top: 5),
@@ -140,21 +150,19 @@ class _listPageState extends State<listPage> {
                           ),
                           child: const Text(
                             '1',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 12),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                            ),
                           ),
                         ),
                     ],
                   ),
-                  // ✅ Klik → masuk ke ChatDetail
                   onTap: () {
                     Navigator.pushNamed(
                       context,
-                      "ChatDetail",
-                      arguments: {
-                        'contactName': chat['name'],
-                        'avatarAsset': chat['avatar'],
-                      },
+                      "chatDetail",
+                      arguments: chat, // 🔹 Kirim semua data chat
                     );
                   },
                 );
