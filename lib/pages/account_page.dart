@@ -57,7 +57,7 @@ class AccountPage extends StatelessWidget {
         children: [
           ClipOval(
             child: Image.asset(
-              'assets/image/logo.png',
+              'assets/images/account.jpeg',
               width: 100,
               height: 100,
               fit: BoxFit.cover,
@@ -68,7 +68,7 @@ class AccountPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
               Text(
-                'Adiz Hitam',
+                'Yusuf Nawaf Albana',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -77,7 +77,7 @@ class AccountPage extends StatelessWidget {
               ),
               SizedBox(height: 5),
               Text(
-                'adizHitam@example.com',
+                'yusufnawafalbana2009@gmail.com',
                 style: TextStyle(color: Colors.white70),
               ),
             ],

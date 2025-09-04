@@ -4,10 +4,10 @@ class ItemsWidget extends StatelessWidget {
   ItemsWidget({super.key});
 
   final List<String> myProductName = [
-    'Outfit',
-    'Makanan',
-    'Skincare',
-    'Elektronik',
+    'Baju Outdoor 1 set',
+    'Selai coklat ',
+    'skintific loution',
+    'TWS Bluetooth ',
   ];
 
   @override
@@ -62,20 +62,36 @@ class ItemsWidget extends StatelessWidget {
 
                 const SizedBox(height: 10),
 
-                // 🔹 Gambar produk (klikable)
+               // 🔹 Gambar produk (klikable)
                 InkWell(
                   onTap: () {
                     Navigator.pushNamed(context, "itemsPage");
                   },
                   child: Container(
                     margin: const EdgeInsets.all(10),
-                    child: Image.asset(
-                      'images/items/${i + 1}.png',
-                      height: 100,
-                      width: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20), // sudut membulat
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: -2,   // negatif supaya cekung
+                          blurRadius: 10,
+                          offset: const Offset(0, 5),
+                        ),
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20), // sama dengan di atas
+                      child: Image.asset(
+                        'images/items/${i + 1}.jpeg',
+                        height: 350,
+                        width: double.infinity,
+                        fit: BoxFit.cover, // biar pas
+                      ),
                     ),
                   ),
                 ),
+
 
                 // 🔹 Nama produk
                 Container(

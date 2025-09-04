@@ -27,10 +27,13 @@ class CategoriesWidget extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Image.asset(
-                    'images/categories/${i + 1}.png', // Pastikan gambar sesuai dengan indeks
-                    width: 40,
-                    height: 40,
+                  ClipOval(
+                    child: Image.asset(
+                      'images/categories/${i + 1}.jpeg', 
+                      width: 50,   // 👉 atur lebih besar kalau mau
+                      height: 50,  // 👉 supaya skalanya pas
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   const SizedBox(width: 10),
                   Text(

@@ -61,7 +61,7 @@ class _CartItemSamplesState extends State<cartItemSamples> {
                   height: 70,
                   width: 70,
                   margin: const EdgeInsets.only(right: 15),
-                  child: Image.asset('assets/image/carts/${i + 1}.png'),
+                  child: Image.asset('assets/images/carts/${i + 1}.jpeg'),
                 ),
 
                 // judul + harga + deskripsi

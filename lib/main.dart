@@ -8,6 +8,8 @@ import 'pages/register_page.dart';
 import 'pages/account_page.dart';
 import 'pages/cart_page.dart';
 import 'pages/home_page.dart';
+import 'pages/list_page.dart';
+import 'pages/detail_chat.dart';
 
 void main () {
   runApp(const MyApp());
@@ -27,6 +29,8 @@ class MyApp extends StatelessWidget {
         'accountPage': (context) => const AccountPage(),
         'cartPage': (context) => const CartPage(),
         'homePage': (context) => const homePage(),
+        'listPage': (context) => listPage(),
+        'chatDetail': (context) => chatScreen(contactName: 'Nike Official'),
       },
     );
   }
