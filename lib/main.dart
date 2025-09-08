@@ -10,6 +10,7 @@ import 'pages/cart_page.dart';
 import 'pages/home_page.dart';
 import 'pages/list_page.dart';
 import 'pages/detail_chat.dart';
+import 'pages/detail_product.dart';
 
 void main () {
   runApp(const MyApp());

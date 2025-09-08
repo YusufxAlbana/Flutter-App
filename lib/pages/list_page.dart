@@ -10,39 +10,44 @@ class _listPageState extends State<listPage> {
 final List<Map<String, dynamic>> chats = [
   {
     'name': 'Eiger Official',
-    'message': 'Segera Memesan Sebelum Kehabisan.',
-    'time': '12:30',
+    'message': 'yaudah 1,5jt cash gimana ?',
+    'time': '13:00',
     'avatar': 'images/7.png',
     'isUnread': true,
     'messages': [
       {
-        'text': 'Segera Memesan Sebelum Kehabisan.',
+        'text': 'Lelang tiket coldplay harga 2jt',
         'isMe': false,
         'time': '12:30',
       },
       {
-        'text': 'Baik, saya cek dulu stoknya.',
+        'text': 'apaan sih calo calo',
         'isMe': true,
-        'time': '12:32',
+        'time': '12:45',
+      },
+      {
+        'text': 'yaudah 1,5jt cash gimana ?',
+        'isMe': false,
+        'time': '13:00',
       },
     ],
   },
   {
     'name': 'Penjual Jesus Lokal',
-    'message': 'jadi gimana ini mas pesanannya ?',
+    'message': 'iyo, nanti saya kirim',
     'time': '12:05',
     'avatar': 'images/5.webp',
     'isUnread': false,
     'messages': [
       {
-        'text': 'Halo mas, jadi gimana pesannya?',
-        'isMe': false,
-        'time': '12:05',
+        'text': 'Mas, pesen dua ya',
+        'isMe': true,
+        'time': '10:07',
       },
       {
-        'text': 'Oh iya, saya pesen 2 ya.',
-        'isMe': true,
-        'time': '12:07',
+        'text': 'iyo, nanti saya kirim',
+        'isMe': false,
+        'time': '12:05',
       },
     ],
   },

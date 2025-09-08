@@ -59,7 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
         const SizedBox(height: 20),
         const Text(
-          'Welcome New User',
+          'Welcome to TOKOESIAN',
           style: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,

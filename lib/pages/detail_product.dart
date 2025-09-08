@@ -84,7 +84,7 @@ class detailProductPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 "Deskripsi Produk:\n"
-                "Ini adalah deskripsi singkat produk dummy. Cocok digunakan untuk testing tampilan detail produk di aplikasi e-commerce Anda.",
+                "berikan deksripsi singkat tentang produk diatas dengan detail, ini hanya sebagai contoh teks saja, bukan beneran deksripsi produk yang ada di atas",
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.black87,
@@ -110,32 +110,10 @@ class detailProductPage extends StatelessWidget {
                         );
                       },
                       icon: const Icon(Icons.add_shopping_cart),
-                      label: const Text("Tambah ke Keranjang", style: TextStyle(color: Colors.white)),
+                      label: const Text("Tambah ke Keranjang", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF42B549),
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: ElevatedButton.icon(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const CartPage(),
-                          ),
-                        );
-                      },
-                      icon: const Icon(Icons.payment),
-                      label: const Text("Checkout", style: TextStyle(color: Colors.white, fontSize: 20)),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.orange,
-                        padding: const EdgeInsets.symmetric(vertical: 15),
+                        padding: const EdgeInsets.symmetric(vertical: 20),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
