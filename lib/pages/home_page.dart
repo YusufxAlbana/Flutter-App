@@ -41,7 +41,7 @@ class _homePageState extends State<homePage> {
           Icon(
             Icons.home,
             size: 30,
-            color: _currentIndex == 0 ? Colors.yellow : Colors.white, // highlight aktif
+            color: _currentIndex == 0 ? Colors.yellow : Colors.white,
           ),
           Icon(
             Icons.shopping_cart,
@@ -90,18 +90,26 @@ class _homePageContentState extends State<homePageContent> {
           ),
           child: Column(
             children: [
-              // Search Produk
+              // Search Bar
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 15),
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 height: 50,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
                 ),
                 child: Row(
                   children: [
-                    const Icon( // 🔍 ikon di kiri
+                    const Icon(
                       Icons.search,
                       size: 25,
                       color: Colors.grey,
@@ -111,7 +119,7 @@ class _homePageContentState extends State<homePageContent> {
                       child: TextFormField(
                         decoration: const InputDecoration(
                           border: InputBorder.none,
-                          hintText: "Search here...",
+                          hintText: "Cari produk di sini...",
                         ),
                       ),
                     ),
@@ -123,46 +131,55 @@ class _homePageContentState extends State<homePageContent> {
                   ],
                 ),
               ),
-            ],
-          ),
-        ),
-        // Kategori Produk
-        Container(
-          alignment: Alignment.centerLeft,
-          margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-          child: const Text(
-            'Categories',
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF42B549),
-            ),
-          ),
-        ),
-        const CategoriesWidget(),
-        // produk terlaris
-        Container(
-          alignment: Alignment.centerLeft,
-          margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-          child: Row(
-            children: const [
-              Text(
-                'Best Selling',
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF42B549),
+
+              // Bagian Kategori
+              Container(
+                alignment: Alignment.centerLeft,
+                margin: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
+                child: const Text(
+                  'Kategori Populer',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF42B549),
+                  ),
                 ),
               ),
-              SizedBox(width: 8),
-              Icon( // ikon filter
-                Icons.filter_list,
-                color: Color(0xFF42B549),
+              const CategoriesWidget(),
+
+              // Bagian Produk Terlaris
+              Container(
+                alignment: Alignment.centerLeft,
+                margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text(
+                      'Produk Terlaris',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF42B549),
+                      ),
+                    ),
+                    Icon(
+                      Icons.filter_list,
+                      color: Color(0xFF42B549),
+                      size: 30,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10),
+              
+              // Widget untuk menampilkan produk
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: ItemsWidget(),
               ),
             ],
           ),
         ),
-        ItemsWidget(),
       ],
     );
   }
