@@ -172,7 +172,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return ElevatedButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
-          Navigator.pushReplacementNamed(context, 'AccountPage');
+          Navigator.pushReplacementNamed(context, 'homePage');
         }
       },
       style: ElevatedButton.styleFrom(

@@ -43,8 +43,8 @@ class _ChatScreenState extends State<chatScreen> {
     _controller.clear();
     _scrollToBottom();
 
-    // 🔹 Dummy balasan otomatis setelah 1 detik
-    Future.delayed(const Duration(seconds: 1), () {
+    // 🔹 Dummy balasan otomatis setelah 2 detik
+    Future.delayed(const Duration(seconds: 2), () {
       setState(() {
         messages.add({
           'text': "Pesan anda sudah kami terima 👍",
